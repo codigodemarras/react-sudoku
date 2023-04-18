@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .grid {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    gap: 4px;
+
+    .row {
+      display: grid;
+      gap: 4px;
+
+      .cell {
+        width: 40px;
+        height: 40px;
+        border: none;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.2em;
+
+        &:focus {
+          outline: none;
+          background-color: #30475E;
+        }
+
+        &.error {
+          background-color: #F05454;
+          border: none;
+        }
+      }
+    }
+  }
+}
