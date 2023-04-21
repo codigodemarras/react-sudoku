@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { clsx } from "clsx";
+import { useState } from "react";
 
-import "./styles.scss";
 import { validateSudoku } from "../../utils/numberIsUsed";
+import "./styles.scss";
 
 interface SudokuGrid {
   error: boolean;
