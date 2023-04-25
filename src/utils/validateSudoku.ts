@@ -1,6 +1,7 @@
 interface SudokuGrid {
   error: boolean;
   value: number | undefined;
+  disabled: boolean;
 }
 
 interface ValidateSudoku {
@@ -71,4 +72,115 @@ export const validateSudoku = ({ sudoku, positionX, positionY, value }: Validate
   }
 
   return [...sudoku];
+};
+
+const isSudokuSolved = (grid: SudokuGrid[][]) => {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      if (grid[row][col].value === undefined || grid[row][col].error) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
+const solveSudoku = (grid: SudokuGrid[][]) => {
+  const findEmpty = () => {
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        if (grid[row][col].value === undefined) {
+          return [row, col];
+        }
+      }
+    }
+
+    return null;
+  };
+
+  const validateValue = (value: number, row: number, col: number) => {
+    // Validate row
+    for (let i = 0; i < 9; i++) {
+      if (i !== col && grid[row][i].value === value) {
+        return false;
+      }
+    }
+
+    // Validate column
+    for (let i = 0; i < 9; i++) {
+      if (i !== row && grid[i][col].value === value) {
+        return false;
+      }
+    }
+
+    // Validate 3x3 matrix
+    const matrixRow = Math.floor(row / 3) * 3;
+    const matrixCol = Math.floor(col / 3) * 3;
+    for (let i = matrixRow; i < matrixRow + 3; i++) {
+      for (let j = matrixCol; j < matrixCol + 3; j++) {
+        if (i !== row && j !== col && grid[i][j].value === value) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
+  const backtrack = () => {
+    const empty = findEmpty();
+
+    if (empty === null) {
+      return true;
+    }
+
+    const [row, col] = empty;
+
+    for (let value = 1; value <= 9; value++) {
+      if (validateValue(value, row, col)) {
+        grid[row][col].value = value;
+        grid[row][col].disabled = true;
+
+        if (backtrack()) {
+          return true;
+        }
+
+        grid[row][col].value = undefined;
+      }
+    }
+
+    return false;
+  };
+
+  backtrack();
+  return grid;
+};
+
+export const generateSudokuGrid = (grid: SudokuGrid[][]): any => {
+  for (let row = 0; row < 9; row++) {
+    grid[row] = [];
+
+    for (let col = 0; col < 9; col++) {
+      grid[row][col] = { value: undefined, error: false, disabled: false };
+    }
+  }
+
+  solveSudoku(grid);
+
+  // Número aleatorio entre 25 y 64
+  const emptyCells = Math.floor(Math.random() * 40) + 25;
+
+  for (let i = 0; i < emptyCells; i++) {
+    let row, col;
+
+    do {
+      row = Math.floor(Math.random() * 9);
+      col = Math.floor(Math.random() * 9);
+    } while (grid[row][col].value === undefined);
+
+    grid[row][col].value = undefined;
+    grid[row][col].disabled = false;
+  }
+
+  return [...grid];
 };

@@ -1,12 +1,13 @@
 import { clsx } from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { validateSudoku } from "../../utils/validateSudoku";
+import { generateSudokuGrid, validateSudoku } from "../../utils/validateSudoku";
 import "./styles.scss";
 
 interface SudokuGrid {
   error: boolean;
   value: number;
+  disabled: boolean;
 }
 
 function Grid() {
@@ -15,9 +16,15 @@ function Grid() {
       Array(9).fill({
         error: false,
         value: undefined,
+        disabled: false,
       })
     )
   );
+
+  useEffect(() => {
+    const newSudoku = generateSudokuGrid(sudokuGrid);
+    setSudokuGrid(newSudoku);
+  }, []);
 
   return (
     <div className="container">
@@ -28,16 +35,17 @@ function Grid() {
               {grid?.map((cell, j) => {
                 const inputStyles = clsx("cell", {
                   error: cell?.error,
-                  third: j === 2 || j === 5,
                 });
 
                 return (
                   <input
+                    className={inputStyles}
+                    disabled={cell?.disabled}
+                    key={`cell-${i.toString()}-${j.toString()}`}
+                    maxLength={1}
+                    readOnly={cell?.disabled}
                     type="text"
                     value={cell?.value || ""}
-                    key={`cell-${i.toString()}-${j.toString()}`}
-                    className={inputStyles}
-                    maxLength={1}
                     onChange={({ target }) => {
                       const newSudoku = validateSudoku({
                         sudoku: sudokuGrid,
