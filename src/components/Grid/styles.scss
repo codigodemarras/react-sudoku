@@ -1,13 +1,13 @@
 .container {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 
   .grid {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    gap: 4px;
     border: 4px solid #dfdfde;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: repeat(9, 1fr);
     padding: 6px;
 
     .row {
@@ -15,12 +15,12 @@
       gap: 4px;
 
       .cell {
-        width: 40px;
-        height: 40px;
         border: none;
-        text-align: center;
+        font-size: 1.5em;
         font-weight: 700;
-        font-size: 1.2em;
+        height: 40px;
+        text-align: center;
+        width: 40px;
 
         &:disabled {
           background-color: #394867;
@@ -28,8 +28,8 @@
         }
 
         &:focus {
-          outline: none;
           background-color: #30475e;
+          outline: none;
         }
 
         &.error {
