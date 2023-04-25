@@ -1,5 +1,3 @@
-import { SetStateAction } from "react";
-
 interface SudokuGrid {
   error: boolean;
   value: number | undefined;
