@@ -11,6 +11,11 @@ interface ValidateSudoku {
   value: number | undefined;
 }
 
+interface Difficulty {
+  min: number;
+  max: number;
+}
+
 export const validateSudoku = ({ sudoku, positionX, positionY, value }: ValidateSudoku): any => {
   // Clear errors
   sudoku.forEach((row) => row.forEach((cell) => (cell.error = false)));
@@ -74,7 +79,7 @@ export const validateSudoku = ({ sudoku, positionX, positionY, value }: Validate
   return [...sudoku];
 };
 
-const isSudokuSolved = (grid: SudokuGrid[][]) => {
+export const isSudokuSolved = (grid: SudokuGrid[][]) => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       if (grid[row][col].value === undefined || grid[row][col].error) {
@@ -82,6 +87,7 @@ const isSudokuSolved = (grid: SudokuGrid[][]) => {
       }
     }
   }
+
   return true;
 };
 
@@ -156,7 +162,7 @@ const solveSudoku = (grid: SudokuGrid[][]) => {
   return grid;
 };
 
-export const generateSudokuGrid = (grid: SudokuGrid[][]): any => {
+export const generateSudokuGrid = (grid: SudokuGrid[][], difficulty: Difficulty): any => {
   for (let row = 0; row < 9; row++) {
     grid[row] = [];
 
@@ -167,8 +173,7 @@ export const generateSudokuGrid = (grid: SudokuGrid[][]): any => {
 
   solveSudoku(grid);
 
-  // Número aleatorio entre 25 y 64
-  const emptyCells = Math.floor(Math.random() * 40) + 25;
+  const emptyCells = Math.floor(Math.random() * (difficulty.max - difficulty.min)) + difficulty.min;
 
   for (let i = 0; i < emptyCells; i++) {
     let row, col;

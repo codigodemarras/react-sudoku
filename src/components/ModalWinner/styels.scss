@@ -1,0 +1,61 @@
+.winnerModal {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+
+  .modalBg {
+    background-color: #000;
+    height: 100vh;
+    left: 0;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
+
+  .modalContent {
+    align-items: center;
+    background-color: #7952b3;
+    border-radius: 6px;
+    box-shadow: 5px 5px 5px #dfdfde;
+    color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    height: 200px;
+    justify-content: center;
+    padding: 20px;
+    padding-bottom: 30px;
+    width: 500px;
+    z-index: 2;
+
+    .title {
+      font-size: 2em;
+      font-weight: 700;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      margin: 0;
+      font-size: 1.3em;
+    }
+
+    .btn {
+      background-color: #ffc107;
+      border-radius: 4px;
+      border: none;
+      font-size: 1.1em;
+      font-weight: 700;
+      padding: 10px 10px;
+      width: 200px;
+      margin-top: 40px;
+      color: #000;
+    }
+  }
+}

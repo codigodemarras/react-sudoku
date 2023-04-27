@@ -2,8 +2,48 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+
+  .difficulty {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    justify-content: space-between;
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      width: 450px;
+
+      button {
+        padding: 10px;
+        width: 95px;
+        cursor: pointer;
+        background-color: #0f4c75;
+        border: none;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 1em;
+        text-align: center;
+      }
+    }
+  }
+
+  .separator {
+    border: 1px solid #dfdfde;
+    width: 445px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
 
   .grid {
+    border-radius: 6px;
     border: 4px solid #dfdfde;
     display: grid;
     gap: 4px;
