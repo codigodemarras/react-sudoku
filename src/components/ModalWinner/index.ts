@@ -1,1 +1,1 @@
-export { default as ModalWinner } from "./ModalWinner";
+export { default as ModalWinner } from './ModalWinner';

@@ -18,7 +18,7 @@ interface Difficulty {
 
 export const validateSudoku = ({ sudoku, positionX, positionY, value }: ValidateSudoku): any => {
   // Clear errors
-  sudoku.forEach((row) => row.forEach((cell) => (cell.error = false)));
+  sudoku.forEach(row => row.forEach(cell => (cell.error = false)));
 
   sudoku[positionY][positionX] = {
     ...sudoku[positionY][positionX],
@@ -29,6 +29,7 @@ export const validateSudoku = ({ sudoku, positionX, positionY, value }: Validate
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       const value = sudoku[row][col].value;
+
       if (value !== undefined) {
         for (let i = col + 1; i < 9; i++) {
           if (value === sudoku[row][i].value) {
@@ -44,6 +45,7 @@ export const validateSudoku = ({ sudoku, positionX, positionY, value }: Validate
   for (let col = 0; col < 9; col++) {
     for (let row = 0; row < 9; row++) {
       const value = sudoku[row][col].value;
+
       if (value !== undefined) {
         for (let i = row + 1; i < 9; i++) {
           if (value === sudoku[i][col].value) {
@@ -61,6 +63,7 @@ export const validateSudoku = ({ sudoku, positionX, positionY, value }: Validate
       for (let i = matrixRow * 3; i < matrixRow * 3 + 3; i++) {
         for (let j = matrixCol * 3; j < matrixCol * 3 + 3; j++) {
           const value = sudoku[i][j].value;
+
           if (value !== undefined) {
             for (let x = matrixRow * 3; x < matrixRow * 3 + 3; x++) {
               for (let y = matrixCol * 3; y < matrixCol * 3 + 3; y++) {
@@ -122,6 +125,7 @@ const solveSudoku = (grid: SudokuGrid[][]) => {
     // Validate 3x3 matrix
     const matrixRow = Math.floor(row / 3) * 3;
     const matrixCol = Math.floor(col / 3) * 3;
+
     for (let i = matrixRow; i < matrixRow + 3; i++) {
       for (let j = matrixCol; j < matrixCol + 3; j++) {
         if (i !== row && j !== col && grid[i][j].value === value) {
@@ -159,6 +163,7 @@ const solveSudoku = (grid: SudokuGrid[][]) => {
   };
 
   backtrack();
+
   return grid;
 };
 

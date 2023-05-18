@@ -1,5 +1,7 @@
-import { Grid } from "../Grid";
-import "./styles.scss";
+import { Footer } from '../Footer';
+import { Grid } from '../Grid';
+
+import './styles.scss';
 
 function App() {
   return (
@@ -7,6 +9,8 @@ function App() {
       <h1>SU DO KU</h1>
 
       <Grid />
+
+      <Footer />
     </div>
   );
 }

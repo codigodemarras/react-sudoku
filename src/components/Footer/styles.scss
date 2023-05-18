@@ -1,0 +1,41 @@
+.footer {
+  background-color: #333333;
+  bottom: 0;
+  left: 0;
+  padding: 5px 0;
+  position: absolute;
+  width: 100%;
+
+  .social-list {
+    align-items: center;
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    list-style: none;
+    margin-top: 10px;
+    padding-left: 0;
+
+    .social {
+      height: 16px;
+      transform: scale(1.3);
+
+      a {
+        display: block;
+        height: 16px;
+      }
+    }
+  }
+
+  .message {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin-top: 14px;
+    text-align: center;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}

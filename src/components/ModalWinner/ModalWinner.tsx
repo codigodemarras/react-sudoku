@@ -1,4 +1,4 @@
-import "./styels.scss";
+import './styels.scss';
 
 interface Props {
   openWinnerModal: boolean;
@@ -11,12 +11,12 @@ function WinnerModal({ openWinnerModal }: Props) {
 
   return (
     <div className="winnerModal">
-      <div className="modalBg"></div>
+      <div className="modalBg" />
 
       <div className="modalContent">
-        <h4 className="title">Felicitaciones!</h4>
-        <p className="description">Resolviste el SUDOKU!</p>
-        <p className="description">Si querés jugar de nuevo, reiniciá el juego.</p>
+        <h4 className="title">Congratulations!</h4>
+        <p className="description">You solved the SUDOKU!</p>
+        <p className="description">If you want to play again, restart the game.</p>
 
         <button
           className="btn"
@@ -24,7 +24,7 @@ function WinnerModal({ openWinnerModal }: Props) {
             window.location.reload();
           }}
         >
-          Reiniciar
+          Restart
         </button>
       </div>
     </div>
