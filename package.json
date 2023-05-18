@@ -7,7 +7,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
-    "build": "tsc && vite build --base=/react-tic-tac-toe/",
+    "build": "tsc && vite build --base=/react-sudoku/",
     "preview": "vite preview"
   },
   "dependencies": {
